@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gilbert Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #050816;
+      color: #e5e7eb;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1150px, 92%);
+      margin: auto;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(5, 8, 22, 0.75);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .navbar {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .logo span {
+      color: #38bdf8;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      transition: 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #38bdf8;
+    }
+
+    .menu-btn {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.28), transparent 65%);
+      right: -150px;
+      top: 120px;
+      filter: blur(8px);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 60px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.1);
+      color: #7dd3fc;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      font-size: 0.9rem;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 6vw, 5.4rem);
+      line-height: 1;
+      letter-spacing: -0.07em;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #38bdf8, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: #94a3b8;
+      max-width: 620px;
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 22px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: 0.3s ease;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #38bdf8, #8b5cf6);
+      color: white;
+      box-shadow: 0 18px 40px rgba(56, 189, 248, 0.2);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 22px 55px rgba(56, 189, 248, 0.3);
+    }
+
+    .btn-outline {
+      border-color: rgba(255,255,255,0.15);
+      color: #e2e8f0;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .btn-outline:hover {
+      border-color: #38bdf8;
+      color: #38bdf8;
+      transform: translateY(-3px);
+    }
+
+    .btn-small {
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+    }
+
+    .button-row,
+    .project-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .profile-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 32px;
+      padding: 26px;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.3);
+      position: relative;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-16px);
+      }
+    }
+
+    .profile-image-card {
+      padding: 18px;
+      overflow: hidden;
+    }
+
+    .profile-image {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.14);
+      display: block;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 55px;
+    }
+
+    .section-title span {
+      color: #38bdf8;
+      font-weight: 800;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .section-title h2 {
+      margin-top: 10px;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      letter-spacing: -0.05em;
+    }
+
+    .about-grid,
+    .projects-grid,
+    .skills-grid,
+    .stats-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .about-grid {
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: center;
+    }
+
+    .glass-card {
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 26px;
+      padding: 28px;
+      transition: 0.3s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(56, 189, 248, 0.45);
+    }
+
+    .about-text p {
+      color: #94a3b8;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 24px;
+    }
+
+    .stat h3 {
+      color: #38bdf8;
+      font-size: 2rem;
+    }
+
+    .stat p {
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    }
+
+    .skill-card {
+      text-align: center;
+      padding: 26px 18px;
+    }
+
+    .skill-icon {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 14px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(167, 139, 250, 0.18));
+      border: 1px solid rgba(255,255,255,0.12);
+      color: transparent;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+      margin-bottom: 14px;
+    }
+
+    .skill-icon::after {
+      content: "";
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .skills-grid .skill-card:nth-of-type(1) .skill-icon::after {
+      background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg");
+    }
+
+    .skills-grid .skill-card:nth-of-type(2) .skill-icon::after {
+      background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg");
+    }
+
+    .skills-grid .skill-card:nth-of-type(3) .skill-icon::after {
+      background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg");
+    }
+
+    .skills-grid .skill-card:nth-of-type(4) .skill-icon::after {
+      background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg");
+    }
+
+    .skills-grid .skill-card:nth-of-type(5) .skill-icon::after {
+      background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg");
+    }
+
+    .skills-grid .skill-card:nth-of-type(6) .skill-icon::after {
+      background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg");
+    }
+
+    .skills-grid .skill-card:nth-of-type(7) .skill-icon::after {
+      background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg");
+    }
+
+    .skills-grid .skill-card:nth-of-type(8) .skill-icon::after {
+      background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg");
+    }
+
+    .skills-grid .skill-card:nth-of-type(9) .skill-icon::after {
+      background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg");
+    }
+
+    .skills-grid .skill-card:nth-of-type(10) .skill-icon::after {
+      background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg");
+    }
+
+    .skills-grid .skill-card:nth-of-type(11) .skill-icon::after {
+      background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg");
+    }
+
+    .skills-grid .skill-card:nth-of-type(12) .skill-icon::after {
+      background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg");
+    }
+
+    .skills-grid .skill-card:nth-of-type(13) .skill-icon::after {
+      background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg");
+    }
+
+    .skills-grid .skill-card:nth-of-type(14) .skill-icon::after {
+      background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg");
+    }
+
+    .skill-card h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .skill-card p {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    .project-category {
+      margin: 10px 0 28px;
+      font-size: 1.8rem;
+      color: #e5e7eb;
+      border-left: 5px solid #38bdf8;
+      padding-left: 14px;
+    }
+
+    .projects-grid {
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 28px;
+      margin-bottom: 70px;
+    }
+
+    .project-card {
+      overflow: hidden;
+    }
+
+    .project-image {
+      height: 300px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 22px;
+      border: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      padding: 10px;
+      transition: 0.4s ease;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.04);
+    }
+
+    .project-image.mobile-img {
+      height: 420px;
+    }
+
+    .project-image.mobile-img img {
+      object-fit: contain;
+      padding: 14px;
+    }
+
+    .game-dev-grid {
+      grid-template-columns: minmax(300px, 430px);
+      justify-content: start;
+    }
+
+    .project-card h3 {
+      margin-bottom: 12px;
+      font-size: 1.25rem;
+    }
+
+    .project-meta {
+      color: #7dd3fc;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .project-card p {
+      color: #94a3b8;
+      line-height: 1.7;
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .tags span {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(56,189,248,0.1);
+      color: #7dd3fc;
+      font-size: 0.78rem;
+    }
+
+    .timeline {
+      max-width: 850px;
+      margin: auto;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: rgba(56,189,248,0.35);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 60px;
+      margin-bottom: 28px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 10px;
+      top: 26px;
+      width: 22px;
+      height: 22px;
+      background: #38bdf8;
+      border-radius: 50%;
+      box-shadow: 0 0 25px rgba(56,189,248,0.8);
+    }
+
+    .contact-box {
+      max-width: 720px;
+      margin: auto;
+    }
+
+    .contact-links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .contact-link {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: 0.3s ease;
+    }
+
+    .contact-icon {
+      width: 34px;
+      height: 34px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .contact-link:hover {
+      border-color: rgba(56, 189, 248, 0.45);
+      transform: translateY(-3px);
+    }
+
+    .contact-link span {
+      display: block;
+      color: #7dd3fc;
+      font-size: 0.78rem;
+      font-weight: 800;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .contact-link strong {
+      color: #e5e7eb;
+      font-size: 0.92rem;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 15px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: #e5e7eb;
+      outline: none;
+      transition: 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 4px rgba(56,189,248,0.12);
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    footer {
+      padding: 35px 0;
+      text-align: center;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .profile-card {
+        animation: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: #050816;
+        flex-direction: column;
+        padding: 24px;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        transform: translateY(-130%);
+        transition: 0.3s ease;
+      }
+
+      .nav-links.show {
+        transform: translateY(0);
+      }
+
+      .stats-grid,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-image {
+        height: 260px;
+      }
+
+      .project-image.mobile-img {
+        height: 380px;
+      }
+
+      .contact-links {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      .profile-image {
+        height: 340px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container navbar">
+      <a href="#home" class="logo">Gilbert<span>Portfolio</span></a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="menu-btn" id="menuBtn">☰</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <div class="badge">⚡ Available for professional projects</div>
+
+          <h1>
+            Hi, I'm <span>Gilbert</span><br>
+            Full Stack Web Developer
+          </h1>
+
+          <p>
+            I build modern, responsive, and scalable web applications using PHP, Laravel,
+            Vue, Tailwind CSS, HTML, CSS, JavaScript, and MySQL.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="#contact" class="btn btn-outline">Contact Me</a>
+            <a href="#contact" class="btn btn-outline">Request Resume</a>
+          </div>
+        </div>
+
+        <div class="profile-card profile-image-card reveal">
+          <img src="profile.jpg" alt="My Profile Picture" class="profile-image" />
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-title reveal">
+          <span>About Me</span>
+          <h2>Professional System Builder</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="glass-card reveal">
+            <h3>What I Do</h3>
+
+            <br>
+
+            <div class="stats-grid">
+              <div class="stat">
+                <h3>10+</h3>
+                <p>Systems Built</p>
+              </div>
+
+              <div class="stat">
+                <h3>5+</h3>
+                <p>Tech Stacks</p>
+              </div>
+
+              <div class="stat">
+                <h3>100%</h3>
+                <p>Business Focus</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-text reveal">
+            <p>
+              I specialize in developing practical web applications that solve real business problems.
+              My main technologies are PHP, Laravel, Vue, Tailwind CSS, HTML, CSS, JavaScript,
+              MySQL, and database-driven systems.
+            </p>
+
+            <p>
+              My goal is to create systems that are easy to use, reliable, secure,
+              and scalable for daily business operations.
+            </p>
+
+            <div class="button-row">
+              <a href="#contact" class="btn btn-primary">Let's Work Together</a>
+              <a href="#contact" class="btn btn-outline">Request CV</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-title reveal">
+          <span>Tech Stack</span>
+          <h2>Skills & Tools</h2>
+        </div>
+
+        <div class="skills-grid">
+          <div class="glass-card skill-card reveal">
+            <div class="skill-icon">⚛️</div>
+            <h3>Vue / JavaScript</h3>
+            <p>Modern frontend interfaces with reusable and responsive components.</p>
+          </div>
+
+          <div class="glass-card skill-card reveal">
+            <div class="skill-icon">🛠️</div>
+            <h3>Laravel / PHP</h3>
+            <p>Backend APIs, authentication, workflows, and business logic.</p>
+          </div>
+
+          <div class="glass-card skill-card reveal">
+            <div class="skill-icon">🎨</div>
+            <h3>HTML / CSS / Tailwind</h3>
+            <p>Clean, responsive, and professional web layouts.</p>
+          </div>
+
+          <div class="glass-card skill-card reveal">
+            <div class="skill-icon">🗄️</div>
+            <h3>MySQL / Database</h3>
+            <p>Database design, CRUD modules, records, and reporting systems.</p>
+          </div>
+
+          <div class="glass-card skill-card reveal">
+            <div class="skill-icon">PY</div>
+            <h3>Python</h3>
+            <p>Scripts, automation, data handling, and backend problem solving.</p>
+          </div>
+
+          <div class="glass-card skill-card reveal">
+            <div class="skill-icon">JV</div>
+            <h3>Java</h3>
+            <p>Object-oriented programming, application logic, and structured systems.</p>
+          </div>
+
+          <div class="glass-card skill-card reveal">
+            <div class="skill-icon">C++</div>
+            <h3>C++</h3>
+            <p>Core programming concepts, performance-focused logic, and algorithms.</p>
+          </div>
+
+          <div class="glass-card skill-card reveal">
+            <div class="skill-icon">KT</div>
+            <h3>Kotlin</h3>
+            <p>Mobile development foundations and modern Android app logic.</p>
+          </div>
+
+          <div class="glass-card skill-card reveal">
+            <div class="skill-icon">GIT</div>
+            <h3>Git / GitHub</h3>
+            <p>Version control, repository management, and collaborative development workflows.</p>
+          </div>
+
+          <div class="glass-card skill-card reveal">
+            <div class="skill-icon">FB</div>
+            <h3>Firebase</h3>
+            <p>Authentication, cloud-backed app features, and rapid mobile/web prototyping.</p>
+          </div>
+
+          <div class="glass-card skill-card reveal">
+            <div class="skill-icon">BS</div>
+            <h3>Bootstrap</h3>
+            <p>Responsive layouts, reusable UI components, and fast interface development.</p>
+          </div>
+
+          <div class="glass-card skill-card reveal">
+            <div class="skill-icon">FIG</div>
+            <h3>Figma</h3>
+            <p>UI planning, wireframes, prototypes, and clean visual design handoff.</p>
+          </div>
+
+          <div class="glass-card skill-card reveal">
+            <div class="skill-icon">AS</div>
+            <h3>Android Studio</h3>
+            <p>Android app setup, mobile interfaces, testing, and emulator-based development.</p>
+          </div>
+
+          <div class="glass-card skill-card reveal">
+            <div class="skill-icon">API</div>
+            <h3>REST API</h3>
+            <p>API design, request handling, integration testing, and connected system workflows.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-title reveal">
+          <span>Portfolio</span>
+          <h2>Featured Projects</h2>
+        </div>
+
+        <h3 class="project-category reveal">Website & Web System Projects</h3>
+
+        <div class="projects-grid">
+
+          <div class="glass-card project-card reveal">
+            <div class="project-image">
+              <img src="images/1.jpg" alt="Ringshot Project">
+            </div>
+
+            <h3>RINGSHOT: The Bounce Ball Challenge</h3>
+            <div class="project-meta">Role: Game Developer | Status: Completed</div>
+
+            <p>
+              Interactive game project developed with programming, UI design, testing, and planning.
+            </p>
+
+            <div class="tags">
+              <span>Game Dev</span>
+              <span>UI Design</span>
+              <span>Team Project</span>
+            </div>
+
+            <div class="project-actions">
+              <a href="images/1.jpg" class="btn btn-primary btn-small">View Preview</a>
+              <a href="https://github.com/gilbert-abonita" class="btn btn-outline btn-small">GitHub</a>
+            </div>
+          </div>
+
+          <div class="glass-card project-card reveal">
+            <div class="project-image">
+              <img src="images/2.png" alt="Nationalian Market">
+            </div>
+
+            <h3>The Nationalian Market</h3>
+            <div class="project-meta">Role: Full Stack Developer | Status: Completed</div>
+
+            <p>
+              E-commerce and authentication platform with multi-user login and responsive interface design.
+            </p>
+
+            <div class="tags">
+              <span>PHP</span>
+              <span>MySQL</span>
+              <span>Authentication</span>
+            </div>
+
+            <div class="project-actions">
+              <a href="images/2.png" class="btn btn-primary btn-small">View Preview</a>
+              <a href="https://github.com/gilbert-abonita" class="btn btn-outline btn-small">GitHub</a>
+            </div>
+          </div>
+
+          <div class="glass-card project-card reveal">
+            <div class="project-image">
+              <img src="images/4.jpg" alt="ICTHS Portal">
+            </div>
+
+            <h3>ICONNECT ICTHS Portal</h3>
+            <div class="project-meta">Role: Frontend Developer | Status: Completed</div>
+
+            <p>
+              School portal platform designed for communication, transparency, and centralized access.
+            </p>
+
+            <div class="tags">
+              <span>Portal</span>
+              <span>Frontend</span>
+              <span>UI/UX</span>
+            </div>
+
+            <div class="project-actions">
+              <a href="images/4.jpg" class="btn btn-primary btn-small">View Preview</a>
+              <a href="https://github.com/gilbert-abonita" class="btn btn-outline btn-small">GitHub</a>
+            </div>
+          </div>
+
+          <div class="glass-card project-card reveal">
+            <div class="project-image">
+              <img src="images/3.png" alt="Internship Monitoring System">
+            </div>
+
+            <h3>Student Internship Monitoring System</h3>
+            <div class="project-meta">Role: Full Stack Developer | Status: Completed</div>
+
+            <p>
+              Monitoring system for internship management with multiple user roles.
+            </p>
+
+            <div class="tags">
+              <span>Laravel</span>
+              <span>Role Management</span>
+              <span>Monitoring</span>
+            </div>
+
+            <div class="project-actions">
+              <a href="images/3.png" class="btn btn-primary btn-small">View Preview</a>
+              <a href="https://github.com/gilbert-abonita" class="btn btn-outline btn-small">GitHub</a>
+            </div>
+          </div>
+
+          <div class="glass-card project-card reveal">
+            <div class="project-image">
+              <img src="images/6.jpg" alt="ICTHS Login System">
+            </div>
+
+            <h3>ICTHS Login System</h3>
+            <div class="project-meta">Role: UI Developer | Status: Completed</div>
+
+            <p>
+              Modern responsive authentication page with secure login and user-friendly interface.
+            </p>
+
+            <div class="tags">
+              <span>Authentication</span>
+              <span>Responsive</span>
+              <span>Frontend</span>
+            </div>
+
+            <div class="project-actions">
+              <a href="images/6.jpg" class="btn btn-primary btn-small">View Preview</a>
+              <a href="https://github.com/gilbert-abonita" class="btn btn-outline btn-small">GitHub</a>
+            </div>
+          </div>
+
+          <div class="glass-card project-card reveal">
+            <div class="project-image">
+              <img src="images/7.jpg" alt="DAZSMA School Assets Management System">
+            </div>
+
+            <h3>DAZSMA - School Assets Management</h3>
+            <div class="project-meta">Role: System Developer | Status: Completed</div>
+
+            <p>
+              School asset management system for handling records, registration, and asset monitoring.
+            </p>
+
+            <div class="tags">
+              <span>Management System</span>
+              <span>Database</span>
+              <span>CRUD</span>
+            </div>
+
+            <div class="project-actions">
+              <a href="images/7.jpg" class="btn btn-primary btn-small">View Preview</a>
+              <a href="https://github.com/gilbert-abonita" class="btn btn-outline btn-small">GitHub</a>
+            </div>
+          </div>
+
+          <div class="glass-card project-card reveal">
+            <div class="project-image">
+              <img src="images/5.jpg" alt="OTS Predictive Maintenance Management System">
+            </div>
+
+            <h3>OTS Predictive Maintenance Management System</h3>
+            <div class="project-meta">Role: System Developer | Status: Completed</div>
+
+            <p>
+              Predictive maintenance and monitoring system with multi-role access.
+            </p>
+
+            <div class="tags">
+              <span>Management System</span>
+              <span>Monitoring</span>
+              <span>Role-Based Access</span>
+            </div>
+
+            <div class="project-actions">
+              <a href="images/5.jpg" class="btn btn-primary btn-small">View Preview</a>
+              <a href="https://github.com/gilbert-abonita" class="btn btn-outline btn-small">GitHub</a>
+            </div>
+          </div>
+
+          <div class="glass-card project-card reveal">
+            <div class="project-image">
+              <img src="images/11.jpg" alt="QR Caravan Monitoring System">
+            </div>
+
+            <h3>QR Caravan Monitoring System</h3>
+            <div class="project-meta">Role: Full Stack Developer | Status: Completed</div>
+
+            <p>
+              QR-based monitoring system for school promotional visits, registrations, and real-time activity.
+            </p>
+
+            <div class="tags">
+              <span>QR System</span>
+              <span>Monitoring</span>
+              <span>Dashboard</span>
+            </div>
+
+            <div class="project-actions">
+              <a href="images/11.jpg" class="btn btn-primary btn-small">View Preview</a>
+              <a href="https://github.com/gilbert-abonita" class="btn btn-outline btn-small">GitHub</a>
+            </div>
+          </div>
+
+          <div class="glass-card project-card reveal">
+            <div class="project-image">
+              <img src="images/8.jpg" alt="ParSU Research Repository">
+            </div>
+
+            <h3>ParSU Research Repository</h3>
+            <div class="project-meta">Role: Web Developer | Status: Completed</div>
+
+            <p>
+              Web-based undergraduate student research repository for academic research materials.
+            </p>
+
+            <div class="tags">
+              <span>Repository</span>
+              <span>Research</span>
+              <span>Web System</span>
+            </div>
+
+            <div class="project-actions">
+              <a href="images/8.jpg" class="btn btn-primary btn-small">View Preview</a>
+              <a href="https://github.com/gilbert-abonita" class="btn btn-outline btn-small">GitHub</a>
+            </div>
+          </div>
+
+        </div>
+
+        <h3 class="project-category reveal">Mobile App Projects</h3>
+
+        <div class="projects-grid">
+
+          <div class="glass-card project-card reveal">
+            <div class="project-image mobile-img">
+              <img src="images/9.png" alt="StudyMatch App">
+            </div>
+
+            <h3>StudyMatch Mobile App</h3>
+            <div class="project-meta">Role: Mobile UI Designer | Status: Prototype</div>
+
+            <p>
+              Mobile app authentication interface for student matching and account creation.
+            </p>
+
+            <div class="tags">
+              <span>Mobile App</span>
+              <span>UI/UX</span>
+              <span>Authentication</span>
+            </div>
+
+            <div class="project-actions">
+              <a href="images/9.png" class="btn btn-primary btn-small">View Preview</a>
+              <a href="https://github.com/gilbert-abonita" class="btn btn-outline btn-small">GitHub</a>
+            </div>
+          </div>
+
+          <div class="glass-card project-card reveal">
+            <div class="project-image mobile-img">
+              <img src="images/10.jpg" alt="Munting Adventure">
+            </div>
+
+            <h3>Munting Adventure</h3>
+            <div class="project-meta">Role: Mobile Game Designer | Status: Prototype</div>
+
+            <p>
+              Educational math game concept designed to help students learn math through a fun mobile experience.
+            </p>
+
+            <div class="tags">
+              <span>Mobile Game</span>
+              <span>Education</span>
+              <span>Math</span>
+            </div>
+
+            <div class="project-actions">
+              <a href="images/10.jpg" class="btn btn-primary btn-small">View Preview</a>
+              <a href="https://github.com/gilbert-abonita" class="btn btn-outline btn-small">GitHub</a>
+            </div>
+          </div>
+
+        </div>
+
+          <!-- GAME DEVELOPMENT PROJECTS -->
+    <h3 class="project-category reveal">Game Development Projects</h3>
+
+    <div class="projects-grid game-dev-grid">
+
+      <div class="glass-card project-card reveal">
+        <div class="project-image">
+          <img src="images/1.jpg" alt="RINGSHOT Game Project">
+        </div>
+
+        <h3>RINGSHOT: The Bounce Ball Challenge</h3>
+        <div class="project-meta">Role: Game Developer | Status: Completed</div>
+
+        <p>
+          Interactive game development project focused on gameplay mechanics,
+          user interface design, testing, and team collaboration.
+        </p>
+
+        <div class="tags">
+          <span>Game Development</span>
+          <span>UI Design</span>
+          <span>Team Project</span>
+        </div>
+
+        <div class="project-actions">
+          <a href="images/1.jpg" class="btn btn-primary btn-small">View Preview</a>
+          <a href="https://github.com/gilbert-abonita" class="btn btn-outline btn-small">GitHub</a>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-title reveal">
+          <span>Journey</span>
+          <h2>Experience Timeline</h2>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item reveal">
+            <span class="timeline-dot"></span>
+
+            <div class="glass-card">
+              <h3>2026 - Academic & QR Monitoring Platforms</h3>
+              <p>Built QR Caravan Monitoring System, ParSU Research Repository, and school portal features for registration, research access, dashboards, and centralized information management.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <span class="timeline-dot"></span>
+
+            <div class="glass-card">
+              <h3>2026 - Real-time Business Systems</h3>
+              <p>Implemented modern ticketing, notification, and approval workflows for internal operations.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <span class="timeline-dot"></span>
+
+            <div class="glass-card">
+              <h3>2025 - POS & Reporting Automation</h3>
+              <p>Developed POS export, reporting, inventory, and receipt preview/printing tools.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <span class="timeline-dot"></span>
+
+            <div class="glass-card">
+              <h3>2025 - Web & School Management Projects</h3>
+              <p>Created The Nationalian Market, DAZSMA School Assets Management, ICTHS Login System, and internship monitoring workflows with authentication, CRUD modules, and role-based access.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <span class="timeline-dot"></span>
+
+            <div class="glass-card">
+              <h3>2024 - Internal Management Systems</h3>
+              <p>Built CRUD modules, role permissions, dashboards, and approval-based applications.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <span class="timeline-dot"></span>
+
+            <div class="glass-card">
+              <h3>2024 - Mobile App & Game Concepts</h3>
+              <p>Designed StudyMatch Mobile App, Munting Adventure, and RINGSHOT with responsive screens, educational gameplay concepts, UI planning, testing, and team collaboration.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-title reveal">
+          <span>Contact</span>
+          <h2>Let's Build Something</h2>
+        </div>
+
+        <div class="contact-box glass-card reveal">
+          <div class="contact-links">
+            <a href="mailto:gilbertabonita5@gmail.com" class="contact-link">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+                alt="Email icon"
+                class="contact-icon"
+              >
+              <span>Email</span>
+              <strong>gilbertabonita5@gmail.com</strong>
+            </a>
+
+            <a href="https://github.com/gilbert-abonita" class="contact-link">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                alt="GitHub icon"
+                class="contact-icon"
+              >
+              <span>GitHub</span>
+              <strong>github.com/gilbert-abonita</strong>
+            </a>
+
+            <a href="https://www.linkedin.com/in/gilbert-abonita-61a340180?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="contact-link">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
+                alt="LinkedIn icon"
+                class="contact-icon"
+              >
+              <span>LinkedIn</span>
+              <strong>linkedin.com/gilbert-abonita</strong>
+            </a>
+          </div>
+
+          <form class="contact-form" id="contactForm">
+            <input type="text" class="form-control" placeholder="Your Name" required>
+            <input type="email" class="form-control" placeholder="Your Email" required>
+            <textarea class="form-control" placeholder="Your Message" required></textarea>
+            <button class="btn btn-primary" type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Gilbert Portfolio. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("show");
+      });
+    });
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const revealOnScroll = () => {
+      revealElements.forEach(element => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const revealPoint = 120;
+
+        if (elementTop < windowHeight - revealPoint) {
+          element.classList.add("active");
+        }
+      });
+    };
+
+    window.addEventListener("scroll", revealOnScroll);
+    window.addEventListener("load", revealOnScroll);
+
+    const contactForm = document.getElementById("contactForm");
+
+    contactForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+      alert("Thank you! Your message has been submitted.");
+      contactForm.reset();
+    });
+  </script>
+</body>
+</html>
